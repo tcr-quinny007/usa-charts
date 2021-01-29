@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>USA Data - Presidential Election</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://kit.fontawesome.com/07bea5dd21.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
+    <script type="text/javascript" src="js/us-election-2016.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="index.html"><i class="fas fa-flag-usa"></i> USA Data</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i>Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="pres-elections.html"><i class="fas fa-vote-yea"></i>
+                        Presidential Elections
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="us-citizenship-test-short.html"><i class="fas fa-question"></i>
+                        US Citizenship Test (Short Version)
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../about.html"><i class="fas fa-info-circle"></i>About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="title">Presidential Election Results</h1>
+
+        <!-- 2016 -->
+        <h2>2016 - &nbsp;<i class="fas fa-democrat" style="color:#273e7f;"></i>Hillary Clinton &
+            &nbsp;<i class="fas fa-republican" style="color:#a22b28;"></i>Donald J. Trump</h2>
+        <div class="container-votes">
+            <div class="usa-general">
+                <div class="row">
+                    <div class="col">
+                        <canvas id="usa-electoral-2016"></canvas>
+                    </div>
+                    <div class="col">
+                        <canvas id="usa-popular-2016"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="usa-states">
+                <div class="row row-cols-2">
+                    <div class="col">
+                        <canvas id="ca-2016"></canvas>
+                    </div>
+                    <div class="col">
+                        <canvas id="ny-2016"></canvas>
+                    </div>
+                    <div class="col">
+                        <canvas id="tx-2016"></canvas>
+                    </div>
+                    <div class="col">
+                        <canvas id="fl-2016"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="us-map-2016">
+                <h2 style="color: #777777; font-family: 'Lato', serif; font-size: 25px; font-weight: bold">
+                    2016 US Presidential Election Results
+                </h2>
+                <div id="map" style="width: 100%; height: 694px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3 bg-primary">© 2020 Copyright:
+            <a href="index.html"> USA Data</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+    <script>
+        let USAElec2016 = document.getElementById('usa-electoral-2016');
+        let USAPop2016 = document.getElementById('usa-popular-2016');
+        let CA2016 = document.getElementById('ca-2016');
+        let NY2016 = document.getElementById('ny-2016');
+        let TX2016 = document.getElementById('tx-2016');
+        let FL2016 = document.getElementById('fl-2016');
+
+        let massPopChart = new Chart(USAElec2016, {
+            type: 'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: ['Democratic Party', 'Republican Party'],
+                datasets: [{
+                    data: [
+                        232,
+                        306
+                    ],
+                    // backgroundColor: 'green',
+                    backgroundColor: [
+                        '#273e7f',
+                        '#a22b28'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'USA Electoral Votes 2016',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                },
+            }
+        });
+
+        let massPopChart2 = new Chart(USAPop2016, {
+            type: 'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: ['Democratic Party', 'Republican Party'],
+                datasets: [{
+                    data: [
+                        65853516,
+                        62984825
+                    ],
+                    // backgroundColor: 'green',
+                    backgroundColor: [
+                        '#273e7f',
+                        '#a22b28'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'USA Popular Votes 2016',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                },
+            }
+        });
+
+        let massPopChart3 = new Chart(CA2016, {
+            type: 'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: ['Democratic Party', 'Republican Party', 'Other Party'],
+                datasets: [{
+                    data: [
+                        7362490,
+                        3916209,
+                        675618
+                    ],
+                    // backgroundColor: 'green',
+                    backgroundColor: [
+                        '#273e7f',
+                        '#a22b28',
+                        '#969696'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'California 2016',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                },
+            }
+        });
+
+        let massPopChart4 = new Chart(NY2016, {
+            type: 'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: ['Democratic Party', 'Republican Party', 'Other Party'],
+                datasets: [{
+                    data: [
+                        4143874,
+                        2640570,
+                        261731
+                    ],
+                    // backgroundColor: 'green',
+                    backgroundColor: [
+                        '#273e7f',
+                        '#a22b28',
+                        '#969696'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'New York 2016',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                },
+            }
+        });
+
+        let massPopChart5 = new Chart(TX2016, {
+            type: 'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: ['Democratic Party', 'Republican Party', 'Other Party'],
+                datasets: [{
+                    data: [
+                        3867816,
+                        4681590,
+                        353911
+                    ],
+                    // backgroundColor: 'green',
+                    backgroundColor: [
+                        '#273e7f',
+                        '#a22b28',
+                        '#969696'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Texas 2016',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                },
+            }
+        });
+
+        let massPopChart6 = new Chart(FL2016, {
+            type: 'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: ['Democratic Party', 'Republican Party', 'Other Party'],
+                datasets: [{
+                    data: [
+                        4485745,
+                        4605515,
+                        295490
+                    ],
+                    // backgroundColor: 'green',
+                    backgroundColor: [
+                        '#273e7f',
+                        '#a22b28',
+                        '#969696'
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Florida 2016',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                },
+            }
+        });
+    </script>
+
+</body>
+</html>

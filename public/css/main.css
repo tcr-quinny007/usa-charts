@@ -1,0 +1,87 @@
+.navbar-brand {
+    font-family: "Walt Disney Script", sans-serif;
+    font-size: 1.5rem !important;
+}
+
+nav ul li i {
+    margin: 0 10px;
+}
+
+hr {
+    background-color: black;
+}
+
+.title {
+    text-align: center;
+    margin: 20px 0 50px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 22px !important;
+}
+
+.container-votes {
+    border: 1px solid black;
+}
+
+.usa-general {
+    border-bottom: 1px solid black;
+    padding: 20px;
+}
+
+.usa-states {
+    padding: 20px;
+}
+
+.us-map-2016 {
+    border-top: 1px solid black;
+    padding: 20px;
+}
+
+/* US Citizenship Test 1 */
+.border-black {
+    border: 1px solid black;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    left: 15% !important;
+    position: relative;
+    width: 750px;
+    background-color: #dddddd;
+}
+
+.btn-cs-test {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    left: 45% !important;
+    position: relative;
+}
+
+#gif {
+    width: 485px;
+    left: 28% !important;
+    position: relative;
+}
+
+/* Contact */
+#message {
+    resize: none;
+}
+
+/* Footer */
+footer {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: none;
+}
